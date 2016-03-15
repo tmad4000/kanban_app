@@ -14,6 +14,15 @@ entryOutput = {
   output: {
     path:PATHS.build,
     filename:'bundle.js'
+  },
+  module: {
+    loaders: [{
+      test: /\.css$/,
+      include: PATHS.app,
+      loaders: ['style', 'css'],
+
+    }]
+
   }
 }
 
