@@ -29,6 +29,8 @@ entryOutput = {
 
 if(TARGET ==="start" || !TARGET)
   module.exports=Object.assign({
+    devtool: 'eval-source-map',
+
     devServer: {
       contentBase: PATHS.build,
       historyApiFallback: true,
@@ -37,7 +39,8 @@ if(TARGET ==="start" || !TARGET)
       progress: true,
       stats: 'errors-only',
       host: process.env.HOST,
-      port: process.env.PORT
+      port: process.env.PORT || 8080,
+
 
     },
     plugins: [
