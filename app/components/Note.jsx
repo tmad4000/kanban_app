@@ -1,3 +1,3 @@
 import React from 'react'
 
-export default () => <div> notsadsadffsdasdfe here </div>
+export default ({task}) => <div>{task}</div>
