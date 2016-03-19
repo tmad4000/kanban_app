@@ -3,27 +3,43 @@ const TARGET = process.env.npm_lifecycle_event;
 
 const path = require('path');
 const webpack = require('webpack');
+const NpmInstallPlugin = require('npm-install-webpack-plugin');
+
 
 const PATHS = {
   app: path.join(__dirname, 'app'),
   build: path.join(__dirname, 'build')
 };
 
-entryOutput = {
+process.env.BABEL_ENV = TARGET;
+
+
+const entryOutput = {
   entry: PATHS.app,
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  },
   output: {
     path:PATHS.build,
     filename:'bundle.js'
   },
+
   module: {
-    loaders: [{
-      test: /\.css$/,
-      include: PATHS.app,
-      loaders: ['style', 'css'],
+    loaders: [
+      {
+        test: /\.css$/,
+        loaders: ['style', 'css'],
+        include: PATHS.app,
 
-    }]
-
+      },
+      {
+        test: /\.jsx?$/,
+        loaders: ['babel?cacheDirectory'],
+        include: PATHS.app
+      }
+    ]
   }
+
 }
 
 
