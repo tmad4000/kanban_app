@@ -1,5 +1,6 @@
 import React from 'react'
 import Row from './Row.jsx'
+import _ from 'underscore'
 
 export default class Board extends React.Component {
     constructor(props) {
@@ -9,9 +10,9 @@ export default class Board extends React.Component {
     render() {
 
         return (
-            <table>
+            <table style={{backgroundColor:"transparent",borderSpacing:0}}>
                 {
-                    this.props.rows.map( (r) => <Row cols={r} nextTurn={this.props.nextTurn} p1Turn={this.props.p1Turn} /> )
+                    _.times(this.props.nrows,() => <Row ncols={this.props.ncols} nextTurn={this.props.nextTurn} p1Turn={this.props.p1Turn} /> )
                 }
             </table>
         )

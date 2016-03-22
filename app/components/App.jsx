@@ -10,12 +10,19 @@ export default class App extends React.Component {
 
         this.state = {
             p1Turn: true,
-            rows: [
-                [null, null, null],
-                [null, null, null],
-                [null, null, null]
-            ]
+            nrows: 19,
+            ncols: 19
         }
+
+
+        //this.state = {
+        //    p1Turn: true,
+        //    rows: [
+        //        [null, null, null],
+        //        [null, null, null],
+        //        [null, null, null]
+        //    ]
+        //}
 
         //  this.state={
         //
@@ -44,7 +51,7 @@ export default class App extends React.Component {
         return (
             <div>
                 <div>turn: {this.state.p1Turn ? 1 : 2}</div>
-                <Board rows={this.state.rows} nextTurn={this.nextTurn} p1Turn={this.state.p1Turn} />
+                <Board nrows={this.state.nrows} ncols={this.state.ncols} nextTurn={this.nextTurn} p1Turn={this.state.p1Turn} />
             </div>
 
         )
@@ -61,7 +68,6 @@ export default class App extends React.Component {
 
     nextTurn  = () => {
 
-        console.log(this)
         this.setState({p1Turn: !this.state.p1Turn})
 
     }

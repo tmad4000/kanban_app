@@ -8,7 +8,8 @@ export default class Cell extends React.Component {
 
 
   clicked = () => {
-    this.setState({whoseStone:this.props.p1Turn ? 1 : 2})
+    if(this.state.whoseStone==null)
+      this.setState({whoseStone:this.props.p1Turn ? 1 : 2})
     this.props.nextTurn()
   }
 
@@ -47,7 +48,11 @@ export default class Cell extends React.Component {
     //}
     //else {
     //}
-    return <td onClick={ this.clicked } >{this.state.whoseStone==null ? 0 : this.state.whoseStone} </td>
+    return <td onClick={ this.clicked } style={{ width:"30px",height:"30px"}}>
+      <div className="intersection" style={{textAlign:"center",color: this.state.whoseStone==null ? "transparent" : this.state.whoseStone==1 ? "white" : "black", fontSize:"30px"}}>
+        &#x25cf;
+      </div>
+    </td>
 
 
   }

@@ -1,5 +1,6 @@
 import React from 'react'
 import Cell from './Cell.jsx'
+import _ from 'underscore'
 
 export default class Row extends React.Component {
 
@@ -12,9 +13,9 @@ export default class Row extends React.Component {
         return (
             <tr>
                 {
-                    this.props.cols.map(
-                        (stone,i) =>
-                            <Cell whoseStone={stone} nextTurn={this.props.nextTurn} p1Turn={this.props.p1Turn} />
+                    _.times(this.props.ncols,
+                        () =>
+                            <Cell nextTurn={this.props.nextTurn} p1Turn={this.props.p1Turn} />
                     )
                 }
             </tr>
