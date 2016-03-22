@@ -8,11 +8,12 @@ export default class Board extends React.Component {
     }
 
     render() {
+        const {nrows, ncols, clicked, board} = this.props;
 
         return (
             <table style={{backgroundColor:"transparent",borderSpacing:0}}>
                 {
-                    _.times(this.props.nrows,() => <Row ncols={this.props.ncols} nextTurn={this.props.nextTurn} p1Turn={this.props.p1Turn} /> )
+                    _.times(nrows,(i) => <Row ncols={ncols} row={i} clicked={clicked} boardRow={board[i]} /> )
                 }
             </table>
         )
