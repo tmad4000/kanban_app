@@ -14,17 +14,16 @@ export default class Note extends React.Component {
   }
 
   finishEdit = (e) => {
-    //const {value} = e.target
-    //
-    //if(this.props.onEdit) {
-    //  this.props.onEdit(value)
-    //}
+    const {value} = e.target
 
-    this.setState({editing:false })
+    if(this.props.onEdit) {
+      this.props.onEdit(value)
+      this.setState({editing:false })
+    }
+
   }
 
   checkEnter = (e) => {
-  console.log(this.props.onEdit)
     if(e.key === 'Enter') {
       e.target.blur();
       this.finishEdit(e);
@@ -64,3 +63,7 @@ export default class Note extends React.Component {
   }
 
 }
+
+Note.propTypes = {
+  onEdit: React.PropTypes.func.isRequired
+};
