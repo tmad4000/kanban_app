@@ -9,6 +9,28 @@ export default class Note extends React.Component {
   }
 
 
+  edit = (e) => {
+    this.setState({editing:true })
+  }
+
+  finishEdit = (e) => {
+    //const {value} = e.target
+    //
+    //if(this.props.onEdit) {
+    //  this.props.onEdit(value)
+    //}
+
+    this.setState({editing:false })
+  }
+
+  checkEnter = (e) => {
+  console.log(this.props.onEdit)
+    if(e.key === 'Enter') {
+      e.target.blur();
+      this.finishEdit(e);
+    }
+  }
+
 
   render() {
 
@@ -25,26 +47,17 @@ export default class Note extends React.Component {
 
 
     if(this.state.editing) {
-      return <input
-      ref={
-        (e) => e ? e.selectionStart = this.props.task.length : null
-      }
-      autoFocus={true}
-      onBlur={ () => this.setState({editing:false }) }
-      onKeyPress={ (e) => {
-          if(e.key === 'Enter') {
-            e.target.blur();
-            // this.finishEdit(e);
-          }
-
+      return <input type="text"
+        ref={
+          (e) => e ? e.selectionStart = this.props.task.length : null
         }
-      }
-
-      type="text"
-      defaultValue={this.props.task} />;
+        autoFocus={true}
+        onBlur={this.finishEdit}
+        onKeyPress={this.checkEnter}
+        defaultValue={this.props.task} />;
     }
     else {
-      return <div onClick={ (e) => this.setState({editing:true })} >{this.props.task} </div>
+      return <div onClick={this.edit} >{this.props.task} </div>
     }
 
 

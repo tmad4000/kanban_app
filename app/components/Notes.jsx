@@ -8,7 +8,7 @@ export default ({notes}) => {
         notes.map(
           n =>
           <li key={n.id}>
-            <Note task={n.task} />
+            <Note onEdit="hi" task={n.task} />
           </li>
         )
       }
